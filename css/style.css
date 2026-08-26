@@ -1,0 +1,716 @@
+/* ---------------------------------------------------------------
+   Pink Panda — pre-launch landing page
+   Design tokens per design_handoff_pinkpanda_landing/README.md
+--------------------------------------------------------------- */
+
+:root {
+  --deep-green: #1b2419;
+  --overlay-green: rgba(20, 27, 18, 0.55);
+  --off-white: #fbfaf7;
+  --off-white-body: rgba(247, 246, 244, 0.65);
+  --off-white-muted: rgba(247, 246, 244, 0.5);
+  --page-bg: #f7f6f4;
+  --pink: #ef9bb2;
+  --pink-deep: #dc5c7e;
+  --sage: #a8bfa2;
+  --hairline: rgba(247, 246, 244, 0.4);
+  --hairline-footer: rgba(247, 246, 244, 0.2);
+
+  --font: "Assistant", sans-serif;
+  --section-pad-x: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--off-white);
+  font-family: var(--font);
+  text-transform: lowercase;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--pink);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--pink-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------
+   Shared background
+   One continuous photo behind every section. Implemented as a
+   real `position: fixed` layer (rather than
+   `background-attachment: fixed` on each section) because that
+   property is unreliable on iOS Safari, where it silently
+   degrades to `scroll` and breaks the "one continuous surface"
+   effect the client signed off on.
+--------------------------------------------------------------- */
+
+.bg-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../assets/bamboo-bg.jpg");
+  background-size: cover;
+  background-position: 75% center;
+  background-color: var(--deep-green);
+}
+
+.hero,
+.pillars,
+.bamboo,
+.pioneer,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--overlay-green);
+  pointer-events: none;
+}
+
+/* Cut-outs: mask the scrim itself so the un-darkened photo shows
+   through. Never add a second image layer here — independently
+   positioned images drift against the fixed background. */
+
+.scrim--hero {
+  -webkit-mask-image: url("../assets/pinkpanda-mascot.png"), linear-gradient(#000, #000);
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-position: -20px 90px, 0 0;
+  -webkit-mask-size: 260px auto, 100% 100%;
+  -webkit-mask-composite: xor;
+  mask-image: url("../assets/pinkpanda-mascot.png"), linear-gradient(#000, #000);
+  mask-repeat: no-repeat, no-repeat;
+  mask-position: -20px 90px, 0 0;
+  mask-size: 260px auto, 100% 100%;
+  mask-composite: exclude;
+}
+
+.scrim--bamboo {
+  -webkit-mask-image: url(#leafHoles);
+  mask-image: url(#leafHoles);
+}
+
+/* ---------------------------------------------------------------
+   Progress rail
+--------------------------------------------------------------- */
+
+.progress-rail {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(247, 246, 244, 0.3);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.progress-dot.is-active {
+  background: var(--pink);
+  transform: scale(1.4);
+}
+
+/* ---------------------------------------------------------------
+   Hero
+--------------------------------------------------------------- */
+
+.hero {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+}
+
+.hero__logo {
+  height: 74px;
+  width: auto;
+  position: absolute;
+  top: 32px;
+  left: 48px;
+}
+
+.hero__badge {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  height: 74px;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  color: var(--pink);
+  text-align: right;
+}
+
+.hero__badge img {
+  height: 18px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.hero__headline {
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: 0.15em;
+  line-height: 1.7;
+  color: var(--off-white);
+  margin: 140px 0 18px;
+}
+
+.hero__subline {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--pink);
+  margin: 0 0 32px;
+}
+
+.hero__tagline {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  white-space: nowrap;
+  margin-top: 24px;
+}
+
+/* Email forms (shared by hero + pioneer) */
+
+.email-form {
+  width: min(90vw, 380px);
+  margin: 0 auto;
+}
+
+.email-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 588px;
+  margin: 12px auto 0;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 10px;
+}
+
+.email-form--sm .email-row {
+  max-width: 380px;
+}
+
+.email-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--page-bg);
+  padding: 4px;
+}
+
+input::placeholder {
+  color: rgba(31, 31, 31, 0.4);
+}
+
+.dark-email::placeholder {
+  color: rgba(247, 246, 244, 0.9);
+}
+
+.email-row input:focus-visible {
+  outline: none;
+}
+
+.email-row:focus-within {
+  border-color: var(--pink);
+}
+
+.email-row button {
+  background: none;
+  border: none;
+  color: var(--pink);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.email-row button:hover {
+  color: var(--pink-deep);
+}
+
+.form-message {
+  min-height: 1.4em;
+  margin: 8px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--pink);
+}
+
+.form-message.is-error {
+  color: #ffb4b4;
+}
+
+/* Pioneer line (inline logo in a sentence) */
+
+.pioneer-line {
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  color: var(--off-white);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.pioneer-line__logo {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.pioneer-line__logo--lg {
+  height: 70px;
+  margin-top: 8px;
+  margin-right: 6px;
+}
+
+.pioneer-line__logo--sm {
+  height: 52px;
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+.pioneer-line--sm {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+/* ---------------------------------------------------------------
+   Movement + pillars band
+--------------------------------------------------------------- */
+
+.pillars {
+  margin-top: 260px;
+  padding: 40px 0;
+  border-top: 1px dashed var(--sage);
+  border-bottom: 1px dashed var(--sage);
+}
+
+.pillars__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 44px;
+  margin-bottom: 26px;
+  color: var(--pink);
+}
+
+.movement-line {
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--off-white);
+  margin: 0 0 28px;
+}
+
+.movement-line .accent {
+  color: var(--pink);
+}
+
+.pillars__grid {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  padding: 0 24px;
+}
+
+.pillar svg {
+  color: var(--sage);
+  margin-bottom: 14px;
+}
+
+.pillar__title {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--off-white);
+}
+
+.pillar__body {
+  font-size: 15px;
+  color: var(--off-white-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Bamboo material story
+--------------------------------------------------------------- */
+
+.bamboo {
+  display: flex;
+  overflow: visible;
+}
+
+.bamboo__visual {
+  width: 44%;
+  position: relative;
+}
+
+.bamboo__copy {
+  width: 56%;
+  position: relative;
+  z-index: 2;
+  padding: 64px 56px;
+}
+
+.bamboo__inner {
+  max-width: 460px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--pink);
+  margin: 0 0 14px;
+}
+
+.bamboo__heading {
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+  color: var(--off-white);
+}
+
+.bamboo__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--off-white-body);
+  margin: 0 0 32px;
+}
+
+.bamboo__facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.bamboo__facts li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.bamboo__fact-number {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--pink);
+}
+
+.bamboo__fact-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--off-white);
+  margin: 0 0 2px;
+}
+
+.bamboo__fact-body {
+  font-size: 13px;
+  color: var(--off-white-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.divider {
+  position: relative;
+  z-index: 1;
+  border-top: 1px dashed var(--sage);
+}
+
+/* ---------------------------------------------------------------
+   Pioneer Programme
+--------------------------------------------------------------- */
+
+.pioneer {
+  padding: 64px 24px 100px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.pioneer__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pioneer__heading {
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  color: var(--off-white);
+}
+
+.pioneer__body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--off-white-body);
+  margin: 0 0 28px;
+}
+
+.pioneer__mascot {
+  position: absolute;
+  z-index: 1;
+  height: clamp(90px, 14vw, 155px);
+  width: auto;
+  right: -12px;
+  bottom: -48px;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   Footer
+--------------------------------------------------------------- */
+
+.site-footer {
+  padding: 32px 48px;
+  border-top: 1px solid var(--hairline-footer);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.site-footer > * {
+  position: relative;
+  z-index: 2;
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-footer__brand img {
+  height: 40px;
+  width: auto;
+}
+
+.site-footer__brand span {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--off-white-muted);
+}
+
+.site-footer__links {
+  display: flex;
+  gap: 26px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  margin-left: auto;
+  margin-right: 60px;
+}
+
+.site-footer__links a {
+  color: var(--pink);
+}
+
+.site-footer__copy {
+  font-size: 12px;
+  color: var(--off-white-muted);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Responsive — single breakpoint at 700px
+--------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  :root {
+    --section-pad-x: 20px;
+  }
+
+  .progress-rail {
+    display: none;
+  }
+
+  .hero__logo {
+    top: 64px;
+    left: 20px;
+    height: 34px;
+  }
+
+  .hero__badge {
+    top: 64px;
+    right: 20px;
+    height: auto;
+    max-width: 130px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__headline {
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    margin-top: 120px;
+  }
+
+  .email-row {
+    max-width: 100%;
+  }
+
+  .pioneer-line {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .pioneer-line__logo--lg,
+  .pioneer-line__logo--sm {
+    height: 34px;
+    margin-top: 4px;
+    margin-right: 3px;
+  }
+
+  .hero__tagline {
+    white-space: normal;
+    font-size: 12px;
+  }
+
+  .pillars {
+    margin-top: 60px;
+    padding: 32px 0;
+  }
+
+  .icon-row {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .icon-row svg {
+    width: 30px;
+    height: auto;
+  }
+
+  .movement-line {
+    font-size: 22px;
+  }
+
+  .pillars__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .bamboo {
+    flex-direction: column;
+  }
+
+  .bamboo__visual {
+    display: none;
+  }
+
+  .bamboo__copy {
+    width: 100%;
+    padding: 48px 24px;
+  }
+
+  .pioneer {
+    padding: 48px 20px 72px;
+  }
+
+  .pioneer__heading {
+    font-size: 24px;
+  }
+
+  .pioneer__mascot {
+    display: none;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .site-footer__links {
+    margin: 0;
+  }
+}
