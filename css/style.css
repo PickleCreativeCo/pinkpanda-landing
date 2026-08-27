@@ -124,6 +124,11 @@ a:focus-visible {
   mask-composite: exclude;
 }
 
+.scrim--bamboo {
+  -webkit-mask-image: url(#leafHoles);
+  mask-image: url(#leafHoles);
+}
+
 /* ---------------------------------------------------------------
    Progress rail
 --------------------------------------------------------------- */
