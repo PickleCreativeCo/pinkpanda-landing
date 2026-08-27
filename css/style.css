@@ -345,10 +345,11 @@ input::placeholder {
 --------------------------------------------------------------- */
 
 .pillars {
-  margin-top: 260px;
-  padding: 40px 0;
-  border-top: 1px dashed var(--sage);
-  border-bottom: 1px dashed var(--sage);
+  /* padding, not margin: this keeps the gap above the band inside
+     the section's own box so its scrim still darkens the photo
+     behind it (a margin here would open an un-darkened gap between
+     the hero and this section). */
+  padding-top: 260px;
 }
 
 .pillars__inner {
@@ -357,6 +358,9 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px 0;
+  border-top: 1px dashed var(--sage);
+  border-bottom: 1px dashed var(--sage);
 }
 
 .icon-row {
@@ -655,7 +659,10 @@ input::placeholder {
   }
 
   .pillars {
-    margin-top: 60px;
+    padding-top: 60px;
+  }
+
+  .pillars__inner {
     padding: 32px 0;
   }
 
