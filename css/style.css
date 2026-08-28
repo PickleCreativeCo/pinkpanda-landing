@@ -26,10 +26,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   background: var(--page-bg);
@@ -349,7 +345,7 @@ input::placeholder {
      the section's own box so its scrim still darkens the photo
      behind it (a margin here would open an un-darkened gap between
      the hero and this section). */
-  padding-top: 260px;
+  padding-top: 100px;
 }
 
 .pillars__inner {
