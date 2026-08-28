@@ -629,7 +629,10 @@ input::placeholder {
   }
 
   .hero__headline {
-    font-size: 22px;
+    /* sized to keep "eco-engineered for fit & function." (the
+       longer of the two lines) on one line down to 360px wide,
+       per the no-wrap two-line requirement */
+    font-size: 19px;
     letter-spacing: 0.08em;
     white-space: nowrap;
     margin-top: 120px;
