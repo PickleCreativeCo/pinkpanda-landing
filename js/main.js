@@ -24,11 +24,16 @@
   }
 
   // ---- Email capture forms ---------------------------------------------
-  // No ESP (Klaviyo / Mailchimp) has been selected yet — see README "Open
-  // Items for the Client". ENDPOINT is left blank on purpose; until it's
-  // set, submissions are validated and given a success state but not sent
-  // anywhere. Point ENDPOINT at the ESP's signup endpoint once chosen.
-  var ENDPOINT = "";
+  // Submissions go to Formspree, which forwards each one as an email to
+  // pioneers@pinkpandafitness.com. No custom backend involved. If a proper
+  // ESP (Klaviyo / Mailchimp) is set up later — see README "Open Items for
+  // the Client" — swap this endpoint out for the ESP's signup endpoint.
+  var ENDPOINT = "https://formspree.io/f/xwlkvgnl";
+
+  var SOURCE_LABELS = {
+    hero: "Hero waitlist",
+    pioneer: "Pioneer Programme",
+  };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -61,8 +66,15 @@
       var submit = ENDPOINT
         ? fetch(ENDPOINT, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: email, source: source }),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json", // ask Formspree for a JSON response instead of a redirect
+            },
+            body: JSON.stringify({
+              email: email,
+              source: source,
+              _subject: "Pink Panda pioneer signup — " + (SOURCE_LABELS[source] || source),
+            }),
           }).then(function (res) {
             if (!res.ok) throw new Error("Request failed");
           })
