@@ -82,7 +82,7 @@
 
       submit
         .then(function () {
-          setMessage("you're on the list. welcome to the pack.", false);
+          setMessage("you're a pioneer. welcome to the community.", false);
           form.reset();
         })
         .catch(function () {
