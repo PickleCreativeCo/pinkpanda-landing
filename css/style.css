@@ -225,6 +225,7 @@ a:focus-visible {
   letter-spacing: 0.22em;
   color: var(--pink);
   text-align: right;
+  white-space: nowrap;
 }
 
 .hero__badge img {
@@ -686,7 +687,9 @@ input::placeholder {
     top: 64px;
     right: 20px;
     height: auto;
-    max-width: 130px;
+    /* no max-width: it must stay on one line (white-space: nowrap,
+       set unconditionally above), and there's enough clearance from
+       the logo down to 360px wide to let it size to its content */
     font-size: 10px;
     letter-spacing: 0.12em;
   }
@@ -774,7 +777,13 @@ input::placeholder {
   }
 
   .pioneer__mascot {
-    display: none;
+    /* smaller and pulled fully clear of the pioneer-line text above
+       it (the desktop bottom:-48px/right:-12px bleed overlaps that
+       line once the box narrows) and within .pioneer's 72px bottom
+       padding so overflow:hidden on the section doesn't clip it */
+    right: 4px;
+    bottom: -64px;
+    height: 56px;
   }
 
   .site-footer {
