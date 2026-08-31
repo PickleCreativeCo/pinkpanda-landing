@@ -665,6 +665,25 @@ input::placeholder {
 }
 
 /* ---------------------------------------------------------------
+   Responsive — tablet + desktop (everything above the 700px mobile
+   breakpoint, unbounded). Mobile sizes for these are untouched.
+--------------------------------------------------------------- */
+
+@media (min-width: 701px) {
+  .hero__subline {
+    font-size: 15px;
+  }
+
+  .hero__tagline {
+    font-size: 15px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+  }
+}
+
+/* ---------------------------------------------------------------
    Responsive — single breakpoint at 700px
 --------------------------------------------------------------- */
 
