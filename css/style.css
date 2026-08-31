@@ -652,6 +652,18 @@ input::placeholder {
 }
 
 /* ---------------------------------------------------------------
+   Responsive — tablet range (iPad portrait/landscape all fall
+   between 700px and ~1024px, above the mobile breakpoint below, so
+   without this they'd silently inherit the desktop logo size)
+--------------------------------------------------------------- */
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .hero__logo {
+    height: 100px;
+  }
+}
+
+/* ---------------------------------------------------------------
    Responsive — single breakpoint at 700px
 --------------------------------------------------------------- */
 
@@ -667,7 +679,7 @@ input::placeholder {
   .hero__logo {
     top: 64px;
     left: 20px;
-    height: 34px;
+    height: 52px;
   }
 
   .hero__badge {
