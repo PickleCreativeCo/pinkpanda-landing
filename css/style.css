@@ -130,15 +130,6 @@ a:focus-visible {
     rgba(20, 27, 18, 0.3);
 }
 
-/* Movement + pillars band pool. Applied to the section's own scrim
-   rather than inheriting anything from the hero — this section is a
-   standalone box in this build (not nested inside the hero), so
-   there's no drift risk from a pool positioned against a taller
-   ancestor. */
-.scrim--pillars {
-  background: radial-gradient(ellipse 72% 100% at 50% 50%, rgba(16, 22, 14, 0.6) 0%, rgba(16, 22, 14, 0.42) 68%, rgba(16, 22, 14, 0.18) 100%);
-}
-
 .scrim--bamboo {
   -webkit-mask-image: url(#leafHoles);
   mask-image: url(#leafHoles);
@@ -407,6 +398,11 @@ input::placeholder {
   padding: 40px 0;
   border-top: 1px dashed var(--sage);
   border-bottom: 1px dashed var(--sage);
+  /* readability pool, scoped to the bordered content box only — the
+     padding-top gap above the dashed line (inside .pillars) stays
+     at the section's flat base tone instead of getting pulled dark
+     too */
+  background: radial-gradient(ellipse 72% 100% at 50% 50%, rgba(16, 22, 14, 0.6) 0%, rgba(16, 22, 14, 0.42) 68%, rgba(16, 22, 14, 0.18) 100%);
 }
 
 .icon-row {
