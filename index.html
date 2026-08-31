@@ -28,6 +28,15 @@
 <meta name="twitter:description" content="pinkpanda is a bamboo powered activewear brand. Join the Pioneer Programme for early access, event invitations and founder pricing.">
 <meta name="twitter:image" content="https://www.pinkpandafitness.com/assets/bamboo-bg.jpg">
 
+<!-- Every section shares this one photo as its background. Preloading
+     it means it starts downloading immediately alongside the
+     stylesheet instead of only after the CSS finishes parsing and
+     the browser discovers the background-image declarations — on a
+     slow mobile connection that gap is where each section's dark
+     overlay was visible as a flat block before the photo loaded in
+     behind it. -->
+<link rel="preload" as="image" href="assets/bamboo-bg.jpg" fetchpriority="high">
+
 <link rel="icon" href="assets/pinkpanda-logo-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,9 +191,9 @@
     <span>bamboo powered activewear</span>
   </div>
   <div class="site-footer__links">
-    <a href="#">instagram</a>
+    <a href="https://www.instagram.com/pinkpandafitness?utm_source=qr" target="_blank" rel="noopener noreferrer">instagram</a>
     <a href="#">facebook</a>
-    <a href="#">tiktok</a>
+    <a href="https://www.tiktok.com/@pinkpandafitness" target="_blank" rel="noopener noreferrer">tiktok</a>
   </div>
   <p class="site-footer__copy">© 2026 Pink Panda Fitness Limited.</p>
 </footer>
