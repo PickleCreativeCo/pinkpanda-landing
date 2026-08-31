@@ -5,7 +5,11 @@
 
 :root {
   --deep-green: #1b2419;
-  --overlay-green: rgba(20, 27, 18, 0.55);
+  /* Flat base tone under the radial "readability pools" (see .scrim
+     modifiers below) — was a flat 0.55 scrim on every section until
+     client feedback that it darkened the whole photo without giving
+     copy enough local contrast. */
+  --overlay-green: rgba(20, 27, 18, 0.3);
   --off-white: #fbfaf7;
   --off-white-body: rgba(247, 246, 244, 0.65);
   --off-white-muted: rgba(247, 246, 244, 0.5);
@@ -118,11 +122,45 @@ a:focus-visible {
   mask-position: -20px 90px, 0 0;
   mask-size: 260px auto, 100% 100%;
   mask-composite: exclude;
+  /* top-edge gradient protects the logo/badge row; radial pool
+     shades the headline/form without darkening the whole photo */
+  background:
+    linear-gradient(180deg, rgba(16, 22, 14, 0.58) 0%, rgba(16, 22, 14, 0.34) 14%, rgba(16, 22, 14, 0) 24%),
+    radial-gradient(ellipse 58% 26% at 50% 28%, rgba(16, 22, 14, 0.7) 0%, rgba(16, 22, 14, 0.34) 60%, rgba(16, 22, 14, 0) 100%),
+    rgba(20, 27, 18, 0.3);
+}
+
+/* Movement + pillars band pool. Applied to the section's own scrim
+   rather than inheriting anything from the hero — this section is a
+   standalone box in this build (not nested inside the hero), so
+   there's no drift risk from a pool positioned against a taller
+   ancestor. */
+.scrim--pillars {
+  background: radial-gradient(ellipse 72% 100% at 50% 50%, rgba(16, 22, 14, 0.6) 0%, rgba(16, 22, 14, 0.42) 68%, rgba(16, 22, 14, 0.18) 100%);
 }
 
 .scrim--bamboo {
   -webkit-mask-image: url(#leafHoles);
   mask-image: url(#leafHoles);
+  /* pool offset right, since the copy sits in the right 56% column */
+  background:
+    radial-gradient(ellipse 52% 62% at 72% 50%, rgba(16, 22, 14, 0.78) 0%, rgba(16, 22, 14, 0.4) 62%, rgba(16, 22, 14, 0) 100%),
+    rgba(20, 27, 18, 0.3);
+}
+
+.scrim--footer {
+  background:
+    radial-gradient(ellipse 88% 90% at 50% 50%, rgba(16, 22, 14, 0.74) 0%, rgba(16, 22, 14, 0.46) 70%, rgba(16, 22, 14, 0.16) 100%),
+    rgba(20, 27, 18, 0.3);
+}
+
+/* Pioneer section inverts to a light panel so it pulls the eye as
+   the primary conversion point. See the .pioneer overrides further
+   down for the matching text/input color flips. */
+.scrim--pioneer {
+  background:
+    radial-gradient(ellipse 60% 58% at 50% 46%, rgba(250, 249, 246, 0.94) 0%, rgba(250, 249, 246, 0.86) 62%, rgba(250, 249, 246, 0.74) 100%),
+    rgba(250, 249, 246, 0.6);
 }
 
 /* ---------------------------------------------------------------
@@ -171,7 +209,7 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 32px 24px;
+  padding: 32px 24px 0;
 }
 
 .hero__logo {
@@ -247,6 +285,17 @@ a:focus-visible {
 
 .email-form--sm .email-row {
   max-width: 380px;
+  /* light-panel treatment: darker underline + text/arrow instead of
+     the hero form's light-on-dark colors */
+  border-bottom-color: rgba(31, 31, 31, 0.35);
+}
+
+.email-form--sm .email-row input {
+  color: #1f1f1f;
+}
+
+.email-form--sm .email-row button {
+  color: var(--pink-deep);
 }
 
 .email-row input {
@@ -334,6 +383,7 @@ input::placeholder {
 .pioneer-line--sm {
   font-size: 12px;
   letter-spacing: 0.16em;
+  color: #1f1f1f;
 }
 
 /* ---------------------------------------------------------------
@@ -404,7 +454,9 @@ input::placeholder {
 
 .pillar__body {
   font-size: 15px;
-  color: var(--off-white-body);
+  /* higher opacity than --off-white-body: this copy was flagged as
+     marginal for WCAG AA contrast in the original handoff */
+  color: rgba(247, 246, 244, 0.82);
   line-height: 1.6;
   margin: 0;
 }
@@ -514,19 +566,26 @@ input::placeholder {
   margin: 0 auto;
 }
 
+/* This section is a light panel against the dark page (see
+   .scrim--pioneer), so its eyebrow/heading/body/form all flip to
+   dark-on-light — the hero form keeps the light-on-dark treatment. */
+.pioneer__inner .eyebrow {
+  color: var(--pink-deep);
+}
+
 .pioneer__heading {
   font-weight: 300;
   font-size: 30px;
   line-height: 1.3;
   letter-spacing: -0.01em;
   margin: 0 0 14px;
-  color: var(--off-white);
+  color: #1f1f1f;
 }
 
 .pioneer__body {
   font-size: 15px;
   line-height: 1.7;
-  color: var(--off-white-body);
+  color: #4a4a4a;
   margin: 0 0 28px;
 }
 
