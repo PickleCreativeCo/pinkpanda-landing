@@ -662,6 +662,12 @@ input::placeholder {
   .hero__logo {
     height: 100px;
   }
+
+  .hero__badge {
+    /* match the logo's height so both share the same vertical
+       center (both already share top: 32px from the base rules) */
+    height: 100px;
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -705,7 +711,10 @@ input::placeholder {
   .hero__badge {
     top: 64px;
     right: 20px;
-    height: auto;
+    /* match the logo's height (also 64px top) so both share the
+       same vertical center, instead of the badge's text collapsing
+       to a shorter box and sitting higher than the wordmark */
+    height: 52px;
     /* no max-width: it must stay on one line (white-space: nowrap,
        set unconditionally above), and there's enough clearance from
        the logo down to 360px wide to let it size to its content */
