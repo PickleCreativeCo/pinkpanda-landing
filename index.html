@@ -37,7 +37,19 @@
      behind it. -->
 <link rel="preload" as="image" href="assets/bamboo-bg.jpg" fetchpriority="high">
 
-<link rel="icon" href="assets/pinkpanda-logo-black.png">
+<!-- Browser tabs, bookmarks, Chrome's "most visited" shortcut tiles,
+     and phone home screens all read these. Previously this pointed
+     at the wordmark PNG, which is a wide horizontal logo — cropped
+     into a small circle/square by any of the above, it read as an
+     illegible grey smear. These use the mascot instead, composited
+     onto the brand's dark green so the panda itself is what shows. -->
+<link rel="icon" href="assets/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="pinkpanda">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
