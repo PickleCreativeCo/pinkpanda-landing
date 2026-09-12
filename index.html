@@ -7,18 +7,22 @@
 <meta name="description" content="pinkpanda is a bamboo powered activewear brand. Join the Pioneer Programme for early access, event invitations and founder pricing.">
 <meta name="theme-color" content="#1b2419">
 
+<!-- www.pinkpandafitness.com redirects to the bare domain, so the
+     bare domain is the one Google should treat as canonical -- a
+     page reachable at two URLs without this can have its ranking
+     signals split between them. -->
+<link rel="canonical" href="https://pinkpandafitness.com/">
+
 <!-- Open Graph / link previews (WhatsApp, iMessage, Slack, etc. all
      read these — without them, apps fall back to whatever they can
      scrape from the page, which is why the previous preview looked
-     wrong). Update og:url and og:image to the live domain once the
-     site is deployed there — these currently point at
-     pinkpandafitness.com per the planned domain. -->
+     wrong). -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="pinkpanda">
 <meta property="og:title" content="pinkpanda">
 <meta property="og:description" content="pinkpanda is a bamboo powered activewear brand. Join the Pioneer Programme for early access, event invitations and founder pricing.">
-<meta property="og:url" content="https://www.pinkpandafitness.com/">
-<meta property="og:image" content="https://www.pinkpandafitness.com/assets/bamboo-bg.jpg">
+<meta property="og:url" content="https://pinkpandafitness.com/">
+<meta property="og:image" content="https://pinkpandafitness.com/assets/bamboo-bg.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="853">
 <meta property="og:image:alt" content="Bamboo stalks — the material behind pinkpanda's activewear">
@@ -26,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="pinkpanda">
 <meta name="twitter:description" content="pinkpanda is a bamboo powered activewear brand. Join the Pioneer Programme for early access, event invitations and founder pricing.">
-<meta name="twitter:image" content="https://www.pinkpandafitness.com/assets/bamboo-bg.jpg">
+<meta name="twitter:image" content="https://pinkpandafitness.com/assets/bamboo-bg.jpg">
 
 <!-- Every section shares this one photo as its background. Preloading
      it means it starts downloading immediately alongside the
@@ -41,8 +45,8 @@
      and phone home screens all read these. Previously this pointed
      at the wordmark PNG, which is a wide horizontal logo — cropped
      into a small circle/square by any of the above, it read as an
-     illegible grey smear. These use the mascot instead, composited
-     onto the brand's dark green so the panda itself is what shows. -->
+     illegible grey smear. These use the full mascot instead, masked
+     into a white circle so it reads clearly at any size. -->
 <link rel="icon" href="assets/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
