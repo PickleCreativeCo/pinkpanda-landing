@@ -397,20 +397,22 @@ p {
   background-color: var(--ground);
 }
 
+/* sized by percentage so the pair spans the full height of the green
+   section whatever the text column height is */
 .bamboo__leaf--1 {
   left: 130px;
-  top: 30px;
+  top: 7%;
   width: 490px;
-  height: 400px;
-  clip-path: path("M10 40C200 0 440 140 490 400C260 380 40 260 10 40Z");
+  height: 52%;
+  clip-path: url(#leaf1);
 }
 
 .bamboo__leaf--2 {
   left: 110px;
-  top: 440px;
+  top: 64%;
   width: 510px;
-  height: 200px;
-  clip-path: path("M0 12C210 -12 430 60 510 195C330 210 120 160 0 12Z");
+  height: 28%;
+  clip-path: url(#leaf2);
 }
 
 .bamboo__copy {
