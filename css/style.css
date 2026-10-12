@@ -342,6 +342,25 @@ input::placeholder {
   color: #ffb4b4;
 }
 
+/* Shop now button (hero) */
+
+.shop-btn {
+  display: inline-block;
+  margin: 20px auto 24px;
+  padding: 14px 40px;
+  border-radius: 999px;
+  background: var(--pink-deep);
+  color: #fff;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.shop-btn:hover {
+  background: #c14a6b;
+}
+
 /* Pioneer line (inline logo in a sentence) */
 
 .pioneer-line {
