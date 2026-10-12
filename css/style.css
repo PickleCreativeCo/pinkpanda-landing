@@ -76,7 +76,6 @@ p {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.28em;
-  text-transform: uppercase;
 }
 
 .light {
@@ -199,7 +198,6 @@ p {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.24em;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
