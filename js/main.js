@@ -26,8 +26,8 @@
   // ---- Email capture forms ---------------------------------------------
   // Submissions go to Formspree, which forwards each one as an email to
   // pioneers@pinkpandafitness.com. No custom backend involved. If a proper
-  // ESP (Klaviyo / Mailchimp) is set up later — see README "Open Items for
-  // the Client" — swap this endpoint out for the ESP's signup endpoint.
+  // ESP (Klaviyo / Mailchimp) is set up later - see README "Open Items for
+  // the Client" - swap this endpoint out for the ESP's signup endpoint.
   var ENDPOINT = "https://formspree.io/f/xwlkvgnl";
 
   var SOURCE_LABELS = {
@@ -73,7 +73,7 @@
             body: JSON.stringify({
               email: email,
               source: source,
-              _subject: "Pink Panda pioneer signup — " + (SOURCE_LABELS[source] || source),
+              _subject: "Pink Panda pioneer signup - " + (SOURCE_LABELS[source] || source),
             }),
           }).then(function (res) {
             if (!res.ok) throw new Error("Request failed");

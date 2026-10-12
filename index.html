@@ -14,7 +14,7 @@
 <link rel="canonical" href="https://pinkpandafitness.com/">
 
 <!-- Open Graph / link previews (WhatsApp, iMessage, Slack, etc. all
-     read these — without them, apps fall back to whatever they can
+     read these - without them, apps fall back to whatever they can
      scrape from the page, which is why the previous preview looked
      wrong). -->
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://pinkpandafitness.com/assets/bamboo-bg.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="853">
-<meta property="og:image:alt" content="Bamboo stalks — the material behind pinkpanda's activewear">
+<meta property="og:image:alt" content="Bamboo stalks - the material behind pinkpanda's activewear">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="pinkpanda">
@@ -35,7 +35,7 @@
 <!-- Every section shares this one photo as its background. Preloading
      it means it starts downloading immediately alongside the
      stylesheet instead of only after the CSS finishes parsing and
-     the browser discovers the background-image declarations — on a
+     the browser discovers the background-image declarations - on a
      slow mobile connection that gap is where each section's dark
      overlay was visible as a flat block before the photo loaded in
      behind it. -->
@@ -43,7 +43,7 @@
 
 <!-- Browser tabs, bookmarks, Chrome's "most visited" shortcut tiles,
      and phone home screens all read these. Previously this pointed
-     at the wordmark PNG, which is a wide horizontal logo — cropped
+     at the wordmark PNG, which is a wide horizontal logo - cropped
      into a small circle/square by any of the above, it read as an
      illegible grey smear. These use the full mascot instead, masked
      into a white circle so it reads clearly at any size. -->
@@ -56,7 +56,7 @@
 <meta name="apple-mobile-web-app-title" content="pinkpanda">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -73,33 +73,28 @@
 <header class="hero" id="sec-hero" data-progress-section="0">
   <div class="scrim scrim--hero" aria-hidden="true"></div>
   <div class="hero__inner">
-    <img class="hero__logo" src="assets/pinkpanda-logo-white.png" alt="Pink Panda">
-
-    <div class="hero__badge">
-      <span>first drop coming soon</span>
-      <img src="assets/pinkpanda-mascot.png" alt="">
+    <div class="hero__top">
+      <img class="hero__logo" src="assets/pinkpanda-logo-white.png" alt="Pink Panda">
+      <p class="hero__badge">first drop coming soon</p>
     </div>
 
-    <h1 class="hero__headline">bamboo powered activewear.<br>eco-engineered for fit + function.</h1>
-    <p class="hero__subline">naturally soft. seriously strong.</p>
+    <div class="hero__content">
+      <p class="label hero__label">naturally soft. seriously strong.</p>
+      <h1 class="hero__headline">bamboo powered<br>activewear.</h1>
+      <p class="hero__subhead">eco-engineered for fit + function.</p>
 
-    <a href="https://pinkpandafitness.store" class="shop-btn">shop now</a>
-
-    <p class="hero__tagline">a new cross-breed of performance + leisure wear. designed for everyone. everywhere.</p>
+      <div class="hero__cta">
+        <a href="https://pinkpandafitness.store" class="shop-btn">shop now</a>
+        <p class="hero__tagline">a new cross-breed of performance + leisure wear. designed for everyone. everywhere.</p>
+      </div>
+    </div>
   </div>
 </header>
 
 <section class="pillars" id="sec-pillars" data-progress-section="1">
-  <div class="scrim" aria-hidden="true"></div>
+  <div class="scrim scrim--pillars" aria-hidden="true"></div>
   <div class="pillars__inner">
-    <div class="icon-row" aria-hidden="true">
-      <svg width="44" height="33" viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"><path d="M4 22 A16 16 0 0 1 36 22 Z"/></svg>
-      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"><path d="M13 3 L3 9 L7 17 L11 14 L11 37 L29 37 L29 14 L33 17 L37 9 L27 3 Q20 9 13 3 Z"/></svg>
-      <svg width="34" height="36" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"><path d="M6 3 H34 V14 Q34 17 31 17 L29 17 L27 43 L21 43 L20 19 L20 43 L14 43 L12 17 L9 17 Q6 17 6 14 Z"/></svg>
-      <svg width="30" height="36" viewBox="0 0 40 46" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"><path d="M10 2 H22 V22 Q22 27 27 30 L36 35 Q39 37 37 40 L33 44 Q31 46 28 44 L16 34 Q10 29 10 22 Z"/></svg>
-    </div>
-
-    <p class="movement-line">run.<span class="accent"> stretch. </span>lift.<span class="accent"> flow. </span>rest.</p>
+    <p class="movement-line"><span class="heavy">run.</span> <span class="light">stretch.</span> <span class="heavy">lift.</span> <span class="light">flow.</span> <span class="heavy">rest.</span></p>
 
     <div class="pillars__grid">
       <div class="pillar">
@@ -121,23 +116,14 @@
   </div>
 </section>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <mask id="leafHoles" maskContentUnits="objectBoundingBox">
-      <rect x="0" y="0" width="1" height="1" fill="white"/>
-      <path d="M-0.5,-0.5 Q0.5,-0.5 0.5,0.5 Q-0.5,0.5 -0.5,-0.5 Z" fill="black" transform="translate(0.22,0.34) scale(0.24,0.54)"/>
-      <path d="M-0.5,-0.5 Q0.5,-0.5 0.5,0.5 Q-0.5,0.5 -0.5,-0.5 Z" fill="black" transform="translate(0.22,0.77) rotate(-20) scale(0.15,0.3)"/>
-    </mask>
-  </defs>
-</svg>
-
 <section class="bamboo" id="sec-bamboo" data-progress-section="2">
   <div class="scrim scrim--bamboo" aria-hidden="true"></div>
-  <div class="bamboo__visual" aria-hidden="true"></div>
+  <div class="bamboo__leaf bamboo__leaf--1" aria-hidden="true"></div>
+  <div class="bamboo__leaf bamboo__leaf--2" aria-hidden="true"></div>
   <div class="bamboo__copy">
     <div class="bamboo__inner">
-      <p class="eyebrow">engineered by nature</p>
-      <h2 class="bamboo__heading">Bamboo, broken down into fibre through a slow, deliberate process, done properly.</h2>
+      <p class="label eyebrow">engineered by nature</p>
+      <h2 class="bamboo__heading">Bamboo, broken down into fibre through a slow, deliberate process, <span class="light">done properly.</span></h2>
       <p class="bamboo__body">Blended with chosen fibres for strength, with a touch of elastane for stretch. It's not 100% eco + we won't pretend it is. It's just made to be worn for years, not one season.</p>
 
       <ol class="bamboo__facts">
@@ -167,13 +153,11 @@
   </div>
 </section>
 
-<div class="divider" role="presentation"></div>
-
 <section class="pioneer" id="sec-pioneer" data-progress-section="3">
   <div class="scrim scrim--pioneer" aria-hidden="true"></div>
   <div class="pioneer__inner">
-    <p class="eyebrow">The Pioneer Programme</p>
-    <h2 class="pioneer__heading">Be a part of our founding community</h2>
+    <p class="label eyebrow">The Pioneer Programme</p>
+    <h2 class="pioneer__heading">Be a part of our<br>founding community</h2>
     <p class="pioneer__body">Sign up for launch event updates + early releases - early access, founder pricing, + a real say in what we make next.</p>
 
     <form class="email-form email-form--sm" data-source="pioneer" novalidate>
@@ -186,9 +170,8 @@
     </form>
 
     <p class="pioneer-line pioneer-line--sm">become a <img src="assets/pinkpanda-logo-black.png" alt="pink panda" class="pioneer-line__logo pioneer-line__logo--sm"> pioneer + get first access</p>
-
-    <img src="assets/pinkpanda-mascot.png" alt="" class="pioneer__mascot">
   </div>
+  <img src="assets/pinkpanda-mascot.png" alt="" class="pioneer__mascot">
 </section>
 
 <footer class="site-footer">

@@ -1,27 +1,23 @@
 /* ---------------------------------------------------------------
-   Pink Panda — pre-launch landing page
-   Design tokens per design_handoff_pinkpanda_landing/README.md
+   Pink Panda: pre-launch landing page
+   Restyle per design_handoff_pinkpanda_restyle/README.md (concept 1a,
+   "weight contrast"): one family (Source Sans 3), extreme weight
+   contrast, green + paper + ink palette over the fixed bamboo photo.
 --------------------------------------------------------------- */
 
 :root {
-  --deep-green: #1b2419;
-  /* Flat base tone under the radial "readability pools" (see .scrim
-     modifiers below) — was a flat 0.55 scrim on every section until
-     client feedback that it darkened the whole photo without giving
-     copy enough local contrast. */
-  --overlay-green: rgba(20, 27, 18, 0.3);
-  --off-white: #fbfaf7;
-  --off-white-body: rgba(247, 246, 244, 0.65);
-  --off-white-muted: rgba(247, 246, 244, 0.5);
-  --page-bg: #f7f6f4;
-  --pink: #ef9bb2;
-  --pink-deep: #dc5c7e;
-  --sage: #a8bfa2;
-  --hairline: rgba(247, 246, 244, 0.4);
-  --hairline-footer: rgba(247, 246, 244, 0.2);
+  --green: #62664f;
+  --ink: #252525;
+  --paper: #f6f7f2;
+  --pink: #d9587c;
+  --pink-hover: #c14a6b;
+  --pink-light: #f3a6bb;
+  --pink-lighter: #f8c2d1;
+  --placeholder: #7d8073;
+  --ground: #3a3d2e;
 
-  --font: "Assistant", sans-serif;
-  --section-pad-x: 48px;
+  --font: "Source Sans 3", sans-serif;
+  --pad-x: 64px;
 }
 
 *,
@@ -32,8 +28,8 @@
 
 body {
   margin: 0;
-  background: var(--page-bg);
-  color: var(--off-white);
+  background: var(--ground);
+  color: var(--ink);
   font-family: var(--font);
   text-transform: lowercase;
 }
@@ -44,18 +40,24 @@ img {
 }
 
 a {
-  color: var(--pink);
+  color: var(--green);
   text-decoration: none;
 }
 
 a:hover,
 a:focus-visible {
-  color: var(--pink-deep);
+  color: var(--ink);
 }
 
 :focus-visible {
   outline: 2px solid var(--pink);
   outline-offset: 3px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
 }
 
 .visually-hidden {
@@ -70,14 +72,22 @@ a:focus-visible {
   border: 0;
 }
 
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.light {
+  font-weight: 200;
+}
+
 /* ---------------------------------------------------------------
    Shared background
-   One continuous photo behind every section. Implemented as a
-   real `position: fixed` layer (rather than
-   `background-attachment: fixed` on each section) because that
-   property is unreliable on iOS Safari, where it silently
-   degrades to `scroll` and breaks the "one continuous surface"
-   effect the client signed off on.
+   One continuous photo behind every section, as a real
+   `position: fixed` layer (iOS Safari ignores
+   `background-attachment: fixed`).
 --------------------------------------------------------------- */
 
 .bg-fixed {
@@ -87,7 +97,7 @@ a:focus-visible {
   background-image: url("../assets/bamboo-bg.jpg");
   background-size: cover;
   background-position: 75% center;
-  background-color: var(--deep-green);
+  background-color: var(--ground);
 }
 
 .hero,
@@ -103,55 +113,24 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--overlay-green);
   pointer-events: none;
 }
 
-/* Cut-outs: mask the scrim itself so the un-darkened photo shows
-   through. Never add a second image layer here — independently
-   positioned images drift against the fixed background. */
-
 .scrim--hero {
-  -webkit-mask-image: url("../assets/pinkpanda-mascot.png"), linear-gradient(#000, #000);
-  -webkit-mask-repeat: no-repeat, no-repeat;
-  -webkit-mask-position: -20px 90px, 0 0;
-  -webkit-mask-size: 260px auto, 100% 100%;
-  -webkit-mask-composite: xor;
-  mask-image: url("../assets/pinkpanda-mascot.png"), linear-gradient(#000, #000);
-  mask-repeat: no-repeat, no-repeat;
-  mask-position: -20px 90px, 0 0;
-  mask-size: 260px auto, 100% 100%;
-  mask-composite: exclude;
-  /* top-edge gradient protects the logo/badge row; radial pool
-     shades the headline/form without darkening the whole photo */
-  background:
-    linear-gradient(180deg, rgba(16, 22, 14, 0.58) 0%, rgba(16, 22, 14, 0.34) 14%, rgba(16, 22, 14, 0) 24%),
-    radial-gradient(ellipse 58% 26% at 50% 28%, rgba(16, 22, 14, 0.7) 0%, rgba(16, 22, 14, 0.34) 60%, rgba(16, 22, 14, 0) 100%),
-    rgba(20, 27, 18, 0.3);
+  background: linear-gradient(180deg, rgba(37, 40, 30, 0.5), rgba(37, 40, 30, 0.68));
+}
+
+.scrim--pillars,
+.scrim--pioneer {
+  background: rgba(246, 247, 242, 0.9);
 }
 
 .scrim--bamboo {
-  -webkit-mask-image: url(#leafHoles);
-  mask-image: url(#leafHoles);
-  /* pool offset right, since the copy sits in the right 56% column */
-  background:
-    radial-gradient(ellipse 52% 62% at 72% 50%, rgba(16, 22, 14, 0.78) 0%, rgba(16, 22, 14, 0.4) 62%, rgba(16, 22, 14, 0) 100%),
-    rgba(20, 27, 18, 0.3);
+  background: rgba(98, 102, 79, 0.9);
 }
 
 .scrim--footer {
-  background:
-    radial-gradient(ellipse 88% 90% at 50% 50%, rgba(16, 22, 14, 0.74) 0%, rgba(16, 22, 14, 0.46) 70%, rgba(16, 22, 14, 0.16) 100%),
-    rgba(20, 27, 18, 0.3);
-}
-
-/* Pioneer section inverts to a light panel so it pulls the eye as
-   the primary conversion point. See the .pioneer overrides further
-   down for the matching text/input color flips. */
-.scrim--pioneer {
-  background:
-    radial-gradient(ellipse 60% 58% at 50% 46%, rgba(250, 249, 246, 0.94) 0%, rgba(250, 249, 246, 0.86) 62%, rgba(250, 249, 246, 0.74) 100%),
-    rgba(250, 249, 246, 0.6);
+  background: rgba(37, 37, 37, 0.78);
 }
 
 /* ---------------------------------------------------------------
@@ -173,7 +152,8 @@ a:focus-visible {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(247, 246, 244, 0.3);
+  background: rgba(37, 37, 37, 0.35);
+  box-shadow: 0 0 0 1px rgba(246, 247, 242, 0.55);
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -189,6 +169,7 @@ a:focus-visible {
 .hero {
   min-height: 100vh;
   overflow: hidden;
+  color: var(--paper);
 }
 
 .hero__inner {
@@ -197,120 +178,117 @@ a:focus-visible {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 32px 24px 0;
 }
 
+.hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px var(--pad-x);
+}
+
+/* the logo files carry a lot of transparent padding, so the box is
+   taller than the visible wordmark */
 .hero__logo {
-  height: 74px;
+  height: 96px;
   width: auto;
-  position: absolute;
-  top: 32px;
-  left: 48px;
+  margin: -24px 0;
 }
 
 .hero__badge {
-  position: absolute;
-  top: 32px;
-  right: 48px;
-  height: 74px;
-  max-width: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  font-size: 15px;
-  letter-spacing: 0.22em;
-  color: var(--pink);
-  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.hero__badge img {
-  height: 18px;
-  width: auto;
-  flex-shrink: 0;
+.hero__content {
+  flex: 1;
+  padding: 0 var(--pad-x) 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.hero__label {
+  font-size: 13px;
+  color: var(--pink-light);
 }
 
 .hero__headline {
-  font-weight: 300;
-  font-size: clamp(28px, 4vw, 40px);
-  letter-spacing: 0.15em;
-  line-height: 1.7;
-  color: var(--off-white);
-  margin: 140px 0 18px;
+  font-size: clamp(64px, 10.4vw, 150px);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
 }
 
-.hero__subline {
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  color: var(--pink);
-  margin: 0 0 32px;
+.hero__subhead {
+  font-size: clamp(22px, 2.1vw, 30px);
+  font-weight: 300;
+  margin-top: 12px;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.shop-btn {
+  display: inline-block;
+  padding: 18px 40px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.shop-btn:hover,
+.shop-btn:focus-visible {
+  background: var(--pink-hover);
+  color: #fff;
 }
 
 .hero__tagline {
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  color: var(--pink);
-  white-space: nowrap;
-  margin-top: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 340px;
 }
 
-/* Email forms (shared by hero + pioneer) */
+/* ---------------------------------------------------------------
+   Email forms
+--------------------------------------------------------------- */
 
 .email-form {
-  width: min(90vw, 380px);
-  margin: 0 auto;
+  width: 100%;
 }
 
 .email-row {
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 588px;
-  margin: 12px auto 0;
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: 10px;
-}
-
-.email-form--sm .email-row {
-  max-width: 380px;
-  /* light-panel treatment: darker underline + text/arrow instead of
-     the hero form's light-on-dark colors */
-  border-bottom-color: rgba(31, 31, 31, 0.35);
-}
-
-.email-form--sm .email-row input {
-  color: #1f1f1f;
-}
-
-.email-form--sm .email-row button {
-  color: var(--pink-deep);
+  border-bottom: 2px solid var(--ink);
 }
 
 .email-row input {
   flex: 1;
-  border: none;
+  min-width: 0;
+  border: 0;
   background: transparent;
-  font-family: inherit;
-  font-size: 14px;
-  letter-spacing: 0.05em;
-  color: var(--page-bg);
-  padding: 4px;
-}
-
-input::placeholder {
-  color: rgba(31, 31, 31, 0.4);
-}
-
-.dark-email::placeholder {
-  color: rgba(247, 246, 244, 0.9);
-}
-
-.email-row input:focus-visible {
+  font: 400 20px var(--font);
+  color: var(--ink);
+  padding: 16px 0;
   outline: none;
+}
+
+.email-row input::placeholder {
+  color: var(--placeholder);
 }
 
 .email-row:focus-within {
@@ -319,209 +297,153 @@ input::placeholder {
 
 .email-row button {
   background: none;
-  border: none;
+  border: 0;
   color: var(--pink);
-  font-size: 18px;
+  font: 700 24px var(--font);
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 0 0 12px;
 }
 
 .email-row button:hover {
-  color: var(--pink-deep);
+  color: var(--pink-hover);
 }
 
 .form-message {
   min-height: 1.4em;
-  margin: 8px 0 0;
-  font-size: 12px;
-  letter-spacing: 0.05em;
+  margin-top: 8px;
+  font-size: 14px;
   color: var(--pink);
 }
 
 .form-message.is-error {
-  color: #ffb4b4;
-}
-
-/* Shop now button (hero) */
-
-.shop-btn {
-  display: inline-block;
-  margin: 20px auto 24px;
-  padding: 14px 40px;
-  border-radius: 999px;
-  background: var(--pink-deep);
-  color: #fff;
-  font-size: 17px;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.shop-btn:hover {
-  background: #c14a6b;
-}
-
-/* Pioneer line (inline logo in a sentence) */
-
-.pioneer-line {
-  font-size: 18px;
-  letter-spacing: 0.16em;
-  color: var(--off-white);
-  margin-top: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.pioneer-line__logo {
-  width: auto;
-  flex-shrink: 0;
-}
-
-.pioneer-line__logo--lg {
-  height: 70px;
-  margin-top: 8px;
-  margin-right: 6px;
-}
-
-.pioneer-line__logo--sm {
-  height: 52px;
-  margin-top: 6px;
-  margin-right: 6px;
-}
-
-.pioneer-line--sm {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  color: #1f1f1f;
+  color: #b3261e;
 }
 
 /* ---------------------------------------------------------------
-   Movement + pillars band
+   Movement + pillars
 --------------------------------------------------------------- */
-
-.pillars {
-  /* padding, not margin: this keeps the gap above the band inside
-     the section's own box so its scrim still darkens the photo
-     behind it (a margin here would open an un-darkened gap between
-     the hero and this section). */
-  padding-top: 100px;
-}
 
 .pillars__inner {
   position: relative;
   z-index: 2;
+  padding: 120px var(--pad-x);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
-  border-top: 1px dashed var(--sage);
-  border-bottom: 1px dashed var(--sage);
-  /* readability pool, scoped to the bordered content box only — the
-     padding-top gap above the dashed line (inside .pillars) stays
-     at the section's flat base tone instead of getting pulled dark
-     too */
-  background: radial-gradient(ellipse 72% 100% at 50% 50%, rgba(16, 22, 14, 0.6) 0%, rgba(16, 22, 14, 0.42) 68%, rgba(16, 22, 14, 0.18) 100%);
-}
-
-.icon-row {
-  display: flex;
-  justify-content: center;
-  gap: 44px;
-  margin-bottom: 26px;
-  color: var(--pink);
+  gap: 80px;
 }
 
 .movement-line {
-  font-size: 32px;
-  font-weight: 300;
-  color: var(--off-white);
-  margin: 0 0 28px;
+  font-size: clamp(44px, 5.8vw, 84px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--ink);
 }
 
-.movement-line .accent {
-  color: var(--pink);
+.movement-line .heavy {
+  font-weight: 850;
+}
+
+.movement-line .light {
+  font-weight: 200;
+  color: var(--green);
 }
 
 .pillars__grid {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-  text-align: center;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-  padding: 0 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 48px;
+  border-top: 1px solid var(--ink);
+  padding-top: 32px;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .pillar svg {
-  color: var(--sage);
-  margin-bottom: 14px;
+  color: var(--green);
 }
 
 .pillar__title {
-  font-size: 19px;
-  font-weight: 700;
-  margin: 0 0 10px;
-  color: var(--off-white);
+  font-size: clamp(28px, 2.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .pillar__body {
-  font-size: 15px;
-  /* higher opacity than --off-white-body: this copy was flagged as
-     marginal for WCAG AA contrast in the original handoff */
-  color: rgba(247, 246, 244, 0.82);
-  line-height: 1.6;
-  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 /* ---------------------------------------------------------------
    Bamboo material story
+   The two leaves are windows through the green overlay onto the
+   same fixed photo (`fixed` attachment, same size/position as
+   .bg-fixed so the image lines up), washed lightly with paper.
 --------------------------------------------------------------- */
 
 .bamboo {
-  display: flex;
-  overflow: visible;
+  overflow: hidden;
+  color: var(--paper);
 }
 
-.bamboo__visual {
-  width: 44%;
-  position: relative;
+.bamboo__leaf {
+  position: absolute;
+  z-index: 2;
+  background:
+    linear-gradient(rgba(246, 247, 242, 0.16), rgba(246, 247, 242, 0.16)),
+    url("../assets/bamboo-bg.jpg") 75% center / cover fixed;
+  background-color: var(--ground);
+}
+
+.bamboo__leaf--1 {
+  left: 130px;
+  top: 30px;
+  width: 490px;
+  height: 400px;
+  clip-path: path("M10 40C200 0 440 140 490 400C260 380 40 260 10 40Z");
+}
+
+.bamboo__leaf--2 {
+  left: 110px;
+  top: 440px;
+  width: 510px;
+  height: 200px;
+  clip-path: path("M0 12C210 -12 430 60 510 195C330 210 120 160 0 12Z");
 }
 
 .bamboo__copy {
-  width: 56%;
   position: relative;
-  z-index: 2;
-  padding: 64px 56px;
+  z-index: 3;
+  padding: 74px var(--pad-x) 80px;
 }
 
 .bamboo__inner {
-  max-width: 460px;
+  margin-left: 625px;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: var(--pink);
-  margin: 0 0 14px;
+.bamboo__inner .eyebrow {
+  color: var(--pink-lighter);
 }
 
 .bamboo__heading {
-  font-weight: 300;
-  font-size: 26px;
-  line-height: 1.5;
-  margin: 0 0 18px;
-  color: var(--off-white);
+  font-size: clamp(36px, 4.4vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .bamboo__body {
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--off-white-body);
-  margin: 0 0 32px;
+  font-size: 19px;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .bamboo__facts {
@@ -530,39 +452,34 @@ input::placeholder {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
 .bamboo__facts li {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(246, 247, 242, 0.35);
+}
+
+.bamboo__facts li:last-child {
+  border-bottom: 1px solid rgba(246, 247, 242, 0.35);
 }
 
 .bamboo__fact-number {
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--pink);
+  font-size: 40px;
+  font-weight: 200;
+  line-height: 1;
 }
 
 .bamboo__fact-label {
-  font-size: 13px;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--off-white);
-  margin: 0 0 2px;
 }
 
 .bamboo__fact-body {
-  font-size: 13px;
-  color: var(--off-white-body);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.divider {
-  position: relative;
-  z-index: 1;
-  border-top: 1px dashed var(--sage);
+  font-size: 16px;
+  margin-top: 4px;
 }
 
 /* ---------------------------------------------------------------
@@ -570,48 +487,67 @@ input::placeholder {
 --------------------------------------------------------------- */
 
 .pioneer {
-  padding: 64px 24px 100px;
-  text-align: center;
+  padding: 130px var(--pad-x);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: end;
   overflow: hidden;
 }
 
 .pioneer__inner {
   position: relative;
   z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-/* This section is a light panel against the dark page (see
-   .scrim--pioneer), so its eyebrow/heading/body/form all flip to
-   dark-on-light — the hero form keeps the light-on-dark treatment. */
 .pioneer__inner .eyebrow {
-  color: var(--pink-deep);
+  color: var(--pink);
 }
 
 .pioneer__heading {
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  margin: 0 0 14px;
-  color: #1f1f1f;
+  font-size: clamp(46px, 7.2vw, 104px);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
 }
 
 .pioneer__body {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #4a4a4a;
-  margin: 0 0 28px;
+  font-size: 20px;
+  line-height: 1.5;
+  max-width: 620px;
+  margin-top: 8px;
+}
+
+.pioneer .email-form {
+  max-width: 620px;
+  margin-top: 24px;
+}
+
+.pioneer-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-top: 8px;
+}
+
+.pioneer-line__logo--sm {
+  height: 72px;
+  width: auto;
+  flex-shrink: 0;
+  margin: -24px 0;
 }
 
 .pioneer__mascot {
-  position: absolute;
-  z-index: 1;
-  height: clamp(90px, 14vw, 155px);
-  width: auto;
-  right: -12px;
-  bottom: -48px;
+  position: relative;
+  z-index: 2;
+  width: 200px;
+  height: auto;
   pointer-events: none;
 }
 
@@ -620,17 +556,18 @@ input::placeholder {
 --------------------------------------------------------------- */
 
 .site-footer {
-  padding: 32px 48px;
-  border-top: 1px solid var(--hairline-footer);
+  padding: 40px var(--pad-x);
   display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  font-size: 14px;
+  color: var(--paper);
   overflow: hidden;
 }
 
-.site-footer > * {
+.site-footer > :not(.scrim) {
   position: relative;
   z-index: 2;
 }
@@ -638,211 +575,145 @@ input::placeholder {
 .site-footer__brand {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .site-footer__brand img {
-  height: 40px;
+  height: 72px;
   width: auto;
-}
-
-.site-footer__brand span {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--off-white-muted);
+  margin: -24px 0;
 }
 
 .site-footer__links {
   display: flex;
-  gap: 26px;
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  margin-left: auto;
-  margin-right: 60px;
+  gap: 28px;
+  font-weight: 600;
 }
 
 .site-footer__links a {
-  color: var(--pink);
+  color: var(--paper);
+}
+
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+  color: var(--pink-light);
 }
 
 .site-footer__copy {
-  font-size: 12px;
-  color: var(--off-white-muted);
-  margin: 0;
+  font-size: 14px;
 }
 
 /* ---------------------------------------------------------------
-   Responsive — tablet range (iPad portrait/landscape all fall
-   between 700px and ~1024px, above the mobile breakpoint below, so
-   without this they'd silently inherit the desktop logo size)
+   Tablet and narrow desktop: the leaf windows would collide with the
+   text column, so they step aside and the text uses the full width.
 --------------------------------------------------------------- */
 
-@media (min-width: 701px) and (max-width: 1024px) {
-  .hero__logo {
-    height: 100px;
+@media (max-width: 1200px) {
+  .bamboo__leaf {
+    display: none;
   }
 
-  .hero__badge {
-    /* match the logo's height so both share the same vertical
-       center (both already share top: 32px from the base rules) */
-    height: 100px;
+  .bamboo__inner {
+    margin-left: 0;
   }
 }
 
 /* ---------------------------------------------------------------
-   Responsive — tablet + desktop (everything above the 700px mobile
-   breakpoint, unbounded). Mobile sizes for these are untouched.
---------------------------------------------------------------- */
-
-@media (min-width: 701px) {
-  .hero__subline {
-    font-size: 15px;
-  }
-
-  .hero__tagline {
-    font-size: 15px;
-  }
-
-  .eyebrow {
-    font-size: 14px;
-  }
-}
-
-/* ---------------------------------------------------------------
-   Responsive — single breakpoint at 700px
+   Mobile
 --------------------------------------------------------------- */
 
 @media (max-width: 700px) {
   :root {
-    --section-pad-x: 20px;
+    --pad-x: 24px;
   }
 
   .progress-rail {
     display: none;
   }
 
+  .hero__top {
+    padding: calc(40px + env(safe-area-inset-top, 0px)) var(--pad-x) 0;
+  }
+
   .hero__logo {
-    /* 64px clears a typical notch/status bar; env() pushes it
-       further for devices with a taller inset (Dynamic Island etc.)
-       instead of relying on one fixed guess for every phone */
-    top: calc(64px + env(safe-area-inset-top, 0px));
-    left: 20px;
-    height: 52px;
+    height: 72px;
+    margin: -18px 0;
   }
 
   .hero__badge {
-    top: calc(64px + env(safe-area-inset-top, 0px));
-    right: 20px;
-    /* match the logo's height (also 64px top) so both share the
-       same vertical center, instead of the badge's text collapsing
-       to a shorter box and sitting higher than the wordmark */
-    height: 52px;
-    /* no max-width: it must stay on one line (white-space: nowrap,
-       set unconditionally above), and there's enough clearance from
-       the logo down to 360px wide to let it size to its content */
     font-size: 10px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.16em;
+  }
+
+  .hero__content {
+    padding-bottom: 72px;
   }
 
   .hero__headline {
-    /* sized to keep "eco-engineered for fit & function." (the
-       longer of the two lines) on one line down to 360px wide,
-       per the no-wrap two-line requirement */
-    font-size: 19px;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-    margin-top: 120px;
+    font-size: clamp(48px, 14vw, 72px);
   }
 
-  .email-row {
-    max-width: 100%;
-  }
-
-  .pioneer-line {
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-  }
-
-  .pioneer-line__logo--lg,
-  .pioneer-line__logo--sm {
-    height: 34px;
-    margin-top: 4px;
-    margin-right: 3px;
-  }
-
-  .hero__tagline {
-    white-space: normal;
-    font-size: 12px;
-  }
-
-  .pillars {
-    padding-top: 60px;
+  .hero__cta {
+    gap: 24px;
   }
 
   .pillars__inner {
-    padding: 32px 0;
-  }
-
-  .icon-row {
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .icon-row svg {
-    width: 30px;
-    height: auto;
-  }
-
-  .movement-line {
-    font-size: 22px;
+    padding: 80px var(--pad-x);
+    gap: 56px;
   }
 
   .pillars__grid {
+    gap: 36px;
+  }
+
+  .bamboo__copy {
+    padding: 64px var(--pad-x);
+  }
+
+  .bamboo__inner {
+    gap: 24px;
+  }
+
+  .bamboo__body {
+    font-size: 17px;
+  }
+
+  .bamboo__facts li {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .bamboo__fact-number {
+    font-size: 32px;
+  }
+
+  .pioneer {
+    padding: 80px var(--pad-x);
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
-  .bamboo {
-    flex-direction: column;
+  .pioneer__body {
+    font-size: 18px;
   }
 
-  .bamboo__visual {
-    display: none;
-  }
-
-  .bamboo__copy {
-    width: 100%;
-    padding: 48px 24px;
-  }
-
-  .pioneer {
-    padding: 48px 20px 72px;
-  }
-
-  .pioneer__heading {
-    font-size: 24px;
+  .pioneer-line {
+    flex-wrap: wrap;
+    font-size: 12px;
   }
 
   .pioneer__mascot {
-    /* smaller and pulled fully clear of the pioneer-line text above
-       it (the desktop bottom:-48px/right:-12px bleed overlaps that
-       line once the box narrows) and within .pioneer's 72px bottom
-       padding so overflow:hidden on the section doesn't clip it */
-    right: 4px;
-    bottom: -64px;
-    height: 56px;
+    width: 130px;
+    justify-self: end;
   }
 
   .site-footer {
     flex-direction: column;
     text-align: center;
-    padding: 32px 24px;
+    padding: 32px var(--pad-x);
   }
 
-  .site-footer__links {
-    margin: 0;
+  .site-footer__brand {
+    flex-direction: column;
+    gap: 8px;
   }
 }
