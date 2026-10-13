@@ -23,6 +23,19 @@
     });
   }
 
+  // ---- No one-word last lines -----------------------------------------
+  // Joins the last two words of each text block with a non-breaking space
+  // so a block can never end on a lone word. Copy is unchanged.
+  document.querySelectorAll("h1, h2, p, .bamboo__fact-label").forEach(function (el) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var last = null;
+    while (walker.nextNode()) {
+      if (walker.currentNode.nodeValue.trim()) last = walker.currentNode;
+    }
+    if (!last) return;
+    last.nodeValue = last.nodeValue.replace(/(\S+)\s+(\S+\s*)$/, "$1 $2");
+  });
+
   // ---- Email capture forms ---------------------------------------------
   // Submissions go to Formspree, which forwards each one as an email to
   // pioneers@pinkpandafitness.com. No custom backend involved. If a proper

@@ -60,6 +60,15 @@ p {
   margin: 0;
 }
 
+h1,
+h2 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -331,6 +340,7 @@ p {
 }
 
 .movement-line {
+  text-wrap: balance;
   font-size: clamp(44px, 5.8vw, 84px);
   letter-spacing: -0.035em;
   line-height: 1;
@@ -339,11 +349,12 @@ p {
 
 .movement-line .heavy {
   font-weight: 850;
+  color: var(--green);
 }
 
 .movement-line .light {
   font-weight: 200;
-  color: var(--green);
+  color: var(--ink);
 }
 
 .pillars__grid {
@@ -355,6 +366,7 @@ p {
 }
 
 .pillar {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -365,7 +377,9 @@ p {
 }
 
 .pillar__title {
-  font-size: clamp(28px, 2.5vw, 36px);
+  /* scales with its column so the whole title stays on one line */
+  font-size: min(36px, 7.9cqw);
+  white-space: nowrap;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.05;
@@ -650,7 +664,8 @@ p {
   }
 
   .hero__headline {
-    font-size: clamp(48px, 14vw, 72px);
+    /* sized so "bamboo powered" always fits on one line */
+    font-size: min(72px, calc((100vw - 48px) / 7.7));
   }
 
   .hero__cta {
@@ -690,6 +705,11 @@ p {
     padding: 80px var(--pad-x);
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .pioneer__heading {
+    /* sized so "founding community" always fits on one line */
+    font-size: min(104px, calc((100vw - 48px) / 8.8));
   }
 
   .pioneer__body {
