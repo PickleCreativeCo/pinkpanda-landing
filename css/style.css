@@ -263,6 +263,21 @@ p {
   color: #fff;
 }
 
+.icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 44px;
+  align-items: center;
+  margin-top: 36px;
+  color: var(--pink-light);
+}
+
+.icon-row svg {
+  width: auto;
+  height: 52px;
+  stroke-width: 1.5;
+}
+
 .hero__tagline {
   font-size: 15px;
   line-height: 1.5;
@@ -670,6 +685,15 @@ p {
 
   .hero__cta {
     gap: 24px;
+  }
+
+  .icon-row {
+    gap: 32px;
+    margin-top: 28px;
+  }
+
+  .icon-row svg {
+    height: 44px;
   }
 
   .pillars__inner {
