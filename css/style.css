@@ -356,7 +356,7 @@ p {
 
 .movement-line {
   text-wrap: balance;
-  font-size: clamp(44px, 5.8vw, 84px);
+  font-size: clamp(64px, 6vw, 84px);
   letter-spacing: -0.035em;
   line-height: 1;
   color: var(--ink);
@@ -694,6 +694,11 @@ p {
 
   .icon-row svg {
     height: 44px;
+  }
+
+  .movement-line {
+    /* big, but always fits "lift. flow. rest." on one line */
+    font-size: min(56px, calc((100vw - 48px) / 6));
   }
 
   .pillars__inner {
