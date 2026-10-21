@@ -414,6 +414,8 @@ p {
   z-index: 1;
   padding: 120px 0;
   color: var(--paper);
+  /* same dark wash as the hero, so the bamboo photo is calmer behind the cards */
+  background: linear-gradient(180deg, rgba(37, 40, 30, 0.55), rgba(37, 40, 30, 0.7));
 }
 
 .products__head {
