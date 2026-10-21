@@ -84,7 +84,7 @@ p {
 .label {
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.16em;
 }
 
 .light {
@@ -464,9 +464,13 @@ p {
 
 .bamboo__heading {
   font-size: clamp(36px, 4.4vw, 64px);
-  font-weight: 800;
+  font-weight: 200;
   letter-spacing: -0.03em;
   line-height: 1;
+}
+
+.bamboo__heading .strong {
+  font-weight: 800;
 }
 
 .bamboo__body {
