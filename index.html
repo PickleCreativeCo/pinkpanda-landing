@@ -64,8 +64,9 @@
 <nav class="progress-rail" aria-label="Page sections">
   <a href="#sec-hero" class="progress-dot" data-dot="0" aria-label="Hero"></a>
   <a href="#sec-pillars" class="progress-dot" data-dot="1" aria-label="Movement and pillars"></a>
-  <a href="#sec-bamboo" class="progress-dot" data-dot="2" aria-label="Bamboo material story"></a>
-  <a href="#sec-pioneer" class="progress-dot" data-dot="3" aria-label="Pioneer Programme"></a>
+  <a href="#sec-products" class="progress-dot" data-dot="2" aria-label="Products"></a>
+  <a href="#sec-bamboo" class="progress-dot" data-dot="3" aria-label="Bamboo material story"></a>
+  <a href="#sec-pioneer" class="progress-dot" data-dot="4" aria-label="Pioneer Programme"></a>
 </nav>
 
 <div class="bg-fixed" aria-hidden="true"></div>
@@ -129,7 +130,79 @@
   </defs>
 </svg>
 
-<section class="bamboo" id="sec-bamboo" data-progress-section="2">
+<section class="products" id="sec-products" data-progress-section="2">
+  <div class="products__head">
+    <h2 class="products__heading">first drop now live</h2>
+    <div class="products__arrows">
+      <button type="button" class="products__arrow products__arrow--prev" aria-label="previous products">&larr;</button>
+      <button type="button" class="products__arrow products__arrow--next" aria-label="next products">&rarr;</button>
+    </div>
+  </div>
+  <div class="products__track" tabindex="0" aria-label="products">
+      <a class="pcard" href="https://pinkpandafitness.store/" data-product="cap" data-variant="black">
+        <div class="pcard__media">
+          
+          <img src="assets/products/black-cap.jpg" alt="black cap" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">black cap</span>
+          <span class="pcard__price"></span>
+        </div>
+      </a>
+      <a class="pcard" href="https://pinkpandafitness.store/" data-product="cap" data-variant="pink">
+        <div class="pcard__media">
+          
+          <img src="assets/products/pink-cap.jpg" alt="pink cap" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">pink cap</span>
+          <span class="pcard__price"></span>
+        </div>
+      </a>
+      <a class="pcard pcard--soon" data-product="cap" data-variant="khaki">
+        <div class="pcard__media">
+          <span class="pcard__badge">coming soon</span>
+          <img src="assets/products/khaki-cap.jpg" alt="khaki cap" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">khaki cap</span>
+          <span class="pcard__price">coming soon</span>
+        </div>
+      </a>
+      <a class="pcard" href="https://pinkpandafitness.store/" data-product="bottle" data-variant="white">
+        <div class="pcard__media">
+          
+          <img src="assets/products/white-bottle.jpg" alt="white bottle" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">white bottle</span>
+          <span class="pcard__price"></span>
+        </div>
+      </a>
+      <a class="pcard" href="https://pinkpandafitness.store/" data-product="bottle" data-variant="satin black">
+        <div class="pcard__media">
+          
+          <img src="assets/products/black-bottle.jpg" alt="black bottle" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">black bottle</span>
+          <span class="pcard__price"></span>
+        </div>
+      </a>
+      <a class="pcard pcard--soon" data-product="bottle" data-variant="bamboo green">
+        <div class="pcard__media">
+          <span class="pcard__badge">coming soon</span>
+          <img src="assets/products/bamboo-green-bottle.jpg" alt="bamboo green bottle" width="1122" height="1402" loading="lazy">
+        </div>
+        <div class="pcard__info">
+          <span class="pcard__name">bamboo green bottle</span>
+          <span class="pcard__price">coming soon</span>
+        </div>
+      </a>
+  </div>
+</section>
+
+<section class="bamboo" id="sec-bamboo" data-progress-section="3">
   <div class="scrim scrim--bamboo" aria-hidden="true"></div>
   <div class="bamboo__leaf bamboo__leaf--1" aria-hidden="true"></div>
   <div class="bamboo__leaf bamboo__leaf--2" aria-hidden="true"></div>
@@ -166,7 +239,7 @@
   </div>
 </section>
 
-<section class="pioneer" id="sec-pioneer" data-progress-section="3">
+<section class="pioneer" id="sec-pioneer" data-progress-section="4">
   <div class="scrim scrim--pioneer" aria-hidden="true"></div>
   <div class="pioneer__inner">
     <p class="label eyebrow">The Pioneer Programme</p>

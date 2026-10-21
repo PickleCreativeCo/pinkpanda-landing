@@ -23,6 +23,62 @@
     });
   }
 
+  // ---- Products carousel ---------------------------------------------
+  var track = document.querySelector(".products__track");
+  if (track) {
+    var step = function () {
+      var card = track.querySelector(".pcard");
+      return card ? card.offsetWidth + 24 : 424;
+    };
+    var prev = document.querySelector(".products__arrow--prev");
+    var next = document.querySelector(".products__arrow--next");
+    var goTo = function (dir) {
+      var s = step();
+      var target = (Math.round(track.scrollLeft / s) + dir) * s;
+      track.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+    };
+    if (prev) prev.addEventListener("click", function () { goTo(-1); });
+    if (next) next.addEventListener("click", function () { goTo(1); });
+
+    // Prices and stock come from the live shop; if that fails the cards keep
+    // their default (in stock, no price shown).
+    var SHOP_URL = "https://pinkpandafitness.store";
+    var money = function (pence) {
+      var pounds = pence / 100;
+      return "\u00a3" + (pounds % 1 === 0 ? pounds : pounds.toFixed(2));
+    };
+    var handles = ["cap", "bottle"];
+    handles.forEach(function (handle) {
+      fetch(SHOP_URL + "/products/" + handle + ".js")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (product) {
+          if (!product) return;
+          product.variants.forEach(function (v) {
+            var el = track.querySelector('[data-product="' + handle + '"][data-variant="' + v.title.toLowerCase() + '"]');
+            if (!el) return;
+            var price = el.querySelector(".pcard__price");
+            var soon = !v.available;
+            el.classList.toggle("pcard--soon", soon);
+            if (soon) el.removeAttribute("href"); else el.setAttribute("href", SHOP_URL + "/");
+            if (soon) {
+              if (!el.querySelector(".pcard__badge")) {
+                var badge = document.createElement("span");
+                badge.className = "pcard__badge";
+                badge.textContent = "coming soon";
+                el.querySelector(".pcard__media").prepend(badge);
+              }
+              price.textContent = "coming soon";
+            } else {
+              var badgeEl = el.querySelector(".pcard__badge");
+              if (badgeEl) badgeEl.remove();
+              price.textContent = money(v.price);
+            }
+          });
+        })
+        .catch(function () {});
+    });
+  }
+
   // ---- No one-word last lines -----------------------------------------
   // Joins the last two words of each text block with a non-breaking space
   // so a block can never end on a lone word. Copy is unchanged.
